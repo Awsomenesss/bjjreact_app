@@ -98,6 +98,7 @@ const Post = (props) => {
           ) : (
             <OverlayTrigger
               placement="top"
+              
               overlay={<Tooltip>Log in to like posts!</Tooltip>}
             >
               <i className="fa-solid fa-thumbs-up" />
