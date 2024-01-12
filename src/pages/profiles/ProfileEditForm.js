@@ -37,11 +37,11 @@ const ProfileEditForm = () => {
         name: "",
         introduction: "",
         belt_color: "",
-        gi_or_no_gi: "",
+        gi_or_no_gi: "", 
         years_trained: "",
-        image: "",
+        profile_image: "",
     });
-    const { name, introduction, belt_color, gi_or_no_gi, years_trained, image } = profileData;
+    const { name, introduction, belt_color, gi_or_no_gi, years_trained, profile_image } = profileData;
 
     const [errors, setErrors] = useState({});
 
@@ -50,8 +50,14 @@ const ProfileEditForm = () => {
             if (currentUser?.profile_id?.toString() === id) {
                 try {
                     const { data } = await axiosReq.get(`/profiles/${id}/`);
-                    const { name, introduction, belt_color, gi_or_no_gi, years_trained, image } = data;
-                    setProfileData({ name, introduction, belt_color, gi_or_no_gi, years_trained, image });
+                    const giOrNoGiValue = data.gi_or_no_gi || 'gi';
+                    setProfileData({ name: data.name, 
+                        introduction: data.introduction, 
+                        belt_color: data.belt_color, 
+                        gi_or_no_gi: giOrNoGiValue, 
+                        years_trained: data.years_trained, 
+                        profile_image: data.profile_image});
+
                 } catch (err) {
                     console.log(err);
                     history.push("/");
@@ -81,20 +87,25 @@ const ProfileEditForm = () => {
         formData.append("years_trained", years_trained);
 
         if (imageFile?.current?.files[0]) {
-            formData.append("image", imageFile?.current?.files[0]);
+            formData.append("profile_image", imageFile?.current?.files[0]);
         }
+
+        console.log(formData.profile_image)
 
         try {
             const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+            console.log(data)
             setCurrentUser((currentUser) => ({
                 ...currentUser,
-                profile_image: data.image,
+                profile_image: data.profile_image,
             }));
             history.goBack();
         } catch (err) {
             console.log(err);
+            console.log(err.response)
             setErrors(err.response?.data);
         }
+    
     };
 
     const additionalFields = (
@@ -185,9 +196,9 @@ const ProfileEditForm = () => {
                 <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
                     <Container className={appStyles.Content}>
                         <Form.Group>
-                            {image && (
+                            {profile_image && (
                                 <figure>
-                                    <Image src={image} fluid />
+                                    <Image src={profile_image} fluid />
                                 </figure>
                             )}
                             {errors?.image?.map((message, idx) => (
@@ -209,6 +220,9 @@ const ProfileEditForm = () => {
                                 accept="image/*"
                                 onChange={(e) => {
                                     if (e.target.files.length) {
+                                        
+                                        console.log("Selected file:", e.target.files[0]);
+
                                         setProfileData({
                                             ...profileData,
                                             image: URL.createObjectURL(e.target.files[0]),
