@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form, Col, Row, Container } from "react-bootstrap";
-import Event from "./Event"; 
+import Event from "./Event";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css"; 
@@ -20,7 +20,7 @@ function EventsPage({ message, filter = "" }) {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const { data } = await axiosReq.get(`/events/?${filter}search=${query}`);
+        const { data } = await axiosReq.get(`/event/?${filter}search=${query}`);
         setEvents(data);
         setHasLoaded(true);
       } catch (err) {

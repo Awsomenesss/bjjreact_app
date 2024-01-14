@@ -15,6 +15,8 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import EventCreateForm from "./pages/events/EventCreateForm"; 
+import EventPage from './pages/events/Eventspage'; 
+import EventsPage from "./pages/events/Eventspage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -52,11 +54,22 @@ function App() {
               />
             )}
           />
+          <Route
+            exact
+            path="/liked"
+            render={() => (
+              <EventsPage
+                message="No results found. Adjust the search keyword or like a post."
+                filter={`event_likes__owner__profile=${profile_id}&ordering=-event_likes__created_at&`}
+              />
+            )}
+          />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/events/create" render={() => <EventCreateForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
+          <Route exact path="/event/:id" render={() => <EventPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route
