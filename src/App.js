@@ -17,6 +17,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import EventCreateForm from "./pages/events/EventCreateForm"; 
 import EventPage from './pages/events/Eventspage'; 
 import EventsPage from "./pages/events/Eventspage";
+import HomePage from './pages/Homepage/Homepage';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -27,13 +28,13 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <PostsPage message="No results found. Adjust the search keyword." />
-            )}
-          />
+          <Route exact path="/" render={() => (
+           
+              <HomePage 
+                message="No results found for posts. Adjust the search keyword."
+              />
+           
+          )} />
           <Route
             exact
             path="/feed"

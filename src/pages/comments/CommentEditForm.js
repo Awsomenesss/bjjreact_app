@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
-
 import styles from "../../styles/CommentCreateEditForm.module.css";
 
 function CommentEditForm(props) {
-  const { id, content, setShowEditForm, setComments } = props;
-
+  const { id, content, setShowEditForm, setComments, commentType } = props;
   const [formContent, setFormContent] = useState(content);
 
   const handleChange = (event) => {
@@ -17,9 +14,11 @@ function CommentEditForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.put(`/comments/${id}/`, {
+      const endpoint = commentType === "event" ? `/event-comments/${id}/` : `/comments/${id}/`;
+      const response = await axiosRes.put(endpoint, {
         content: formContent.trim(),
       });
+  
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.map((comment) => {
@@ -27,14 +26,14 @@ function CommentEditForm(props) {
             ? {
                 ...comment,
                 content: formContent.trim(),
-                updated_at: "now",
+                updated_at: response.data.updated_at,
               }
             : comment;
         }),
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      console.log("Error creating comment:", err.response?.data || err);
     }
   };
 
@@ -59,7 +58,7 @@ function CommentEditForm(props) {
         </button>
         <button
           className={styles.Button}
-          disabled={!content.trim()}
+          disabled={!formContent.trim()}
           type="submit"
         >
           save
