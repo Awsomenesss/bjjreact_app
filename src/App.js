@@ -17,7 +17,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import EventCreateForm from "./pages/events/EventCreateForm"; 
 import EventPage from './pages/events/Eventspage'; 
 import EventsPage from "./pages/events/Eventspage";
-import HomePage from './pages/Homepage/Homepage';
+import HomePage from './pages/homePage/Homepage';
 
 function App() {
   const currentUser = useCurrentUser();

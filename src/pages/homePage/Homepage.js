@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Form, Container } from "react-bootstrap";
-import Post from "../Posts/Post";  // Adjust path as needed
-import Event from "../events/Event"; // Adjust path as needed
+import Post from "../Posts/Post"; 
+import Event from "../events/Event"; 
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
-import styles from "../../styles/PostsPage.module.css"; // Assuming similar styling for events
+import styles from "../../styles/PostsPage.module.css"; 
 import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -55,7 +55,7 @@ function HomePage({ message }) {
                 hasMore={!!contentItems.next}
                 loader={<Asset spinner />}
                 children={contentItems.results.map((item) => (
-                  item.hasOwnProperty('date') // Assuming 'date' is unique to events
+                  item.hasOwnProperty('date') 
                     ? <Event key={item.id} {...item} />
                     : <Post key={item.id} {...item} />
                 ))}

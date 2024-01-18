@@ -29,7 +29,7 @@ const Post = (props) => {
 
   const handleLike = async () => {
     try {
-        const { data } = await axiosRes.post("/post-likes/", { post: id });
+      const { data } = await axiosRes.post("/post-likes/", { post: id });
       setPosts((prevPosts) => ({
         ...prevPosts,
         results: prevPosts.results.map((post) => {
@@ -80,13 +80,12 @@ const Post = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't like your own post!</Tooltip>}
-            >
-              <i className="fa-solid fa-thumbs-up" />
-            </OverlayTrigger>
+          {is_owner ? (<OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>You can't like your own post!</Tooltip>}
+          >
+            <i className="fa-solid fa-thumbs-up" />
+          </OverlayTrigger>
           ) : like_id ? (
             <span onClick={handleUnlike}>
               <i className={`fa-solid fa-thumbs-up ${styles.Heart}`} />
@@ -98,21 +97,19 @@ const Post = (props) => {
           ) : (
             <OverlayTrigger
               placement="top"
-              
               overlay={<Tooltip>Log in to like posts!</Tooltip>}
             >
               <i className="fa-solid fa-thumbs-up" />
             </OverlayTrigger>
           )}
-          {likes_count}
+          <span>{likes_count}</span>
           <Link to={`/posts/${id}`}>
             <i className="far fa-comments" />
           </Link>
-          {comments_count}
+          <span>{comments_count}</span>
         </div>
       </Card.Body>
     </Card>
   );
 };
-
 export default Post;
