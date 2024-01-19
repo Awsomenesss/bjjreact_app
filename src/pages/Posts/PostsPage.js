@@ -25,6 +25,7 @@ function PostsPage({ message, filter = "" }) {
 
   const [query, setQuery] = useState("");
 
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -40,6 +41,8 @@ function PostsPage({ message, filter = "" }) {
     const timer = setTimeout(() => {
       fetchPosts();
     }, 1000);
+
+    console.log("PostsPage setPosts:", setPosts)
 
     return () => {
       clearTimeout(timer);

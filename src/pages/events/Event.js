@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media} from "react-bootstrap";
-import { Link } from "react-router-dom"; 
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
-import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Event = (props) => {
   const {
@@ -13,8 +12,11 @@ const Event = (props) => {
     owner,
     profile_id,
     profile_image,
+    comments_count,
     likes_count,
     like_id,
+    dislikes_count,
+    dislike_id,
     description,
     date,
     time,
@@ -22,7 +24,7 @@ const Event = (props) => {
     image,
     updated_at,
     eventPage,
-    setEvents,
+    setEvent,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -30,36 +32,85 @@ const Event = (props) => {
 
   const handleInterest = async () => {
     try {
+      if (dislike_id) {
+        await axiosRes.delete(`/event-dislikes/${dislike_id}/`);
+      }
       const { data } = await axiosRes.post("/event-likes/", { event: id });
-      setEvents((prevEvents) => ({
+      setEvent(prevEvents => ({
         ...prevEvents,
-        results: prevEvents.results.map((event) => {
-          return event.id === id
-            ? { ...event, likes_count: event.likes_count + 1, like_id: data.id }
-            : event;
-        }),
+        results: prevEvents.results.map(event => (
+          event.id === id ? {
+            ...event,
+            likes_count: event.likes_count + 1,
+            like_id: data.id,
+            dislikes_count: dislike_id ? event.dislikes_count - 1 : event.dislikes_count,
+            dislike_id: null
+          } : event
+        )),
       }));
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleUninterest = async () => {
+  const handleDisinterest = async () => {
+    try {
+      
+      if (like_id) {
+        await axiosRes.delete(`/event-likes/${like_id}/`);
+      }
+     
+      const { data } = await axiosRes.post("/event-dislikes/", { event: id });
+      setEvent(prevEvents => ({
+        ...prevEvents,
+        results: prevEvents.results.map(event => (
+          event.id === id ? {
+            ...event,
+            dislikes_count: event.dislikes_count + 1,
+            dislike_id: data.id,
+            likes_count: like_id ? event.likes_count - 1 : event.likes_count,
+            like_id: null
+          } : event
+        )),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnlike = async () => {
     try {
       await axiosRes.delete(`/event-likes/${like_id}/`);
-      setEvents((prevEvents) => ({
+      setEvent(prevEvents => ({
         ...prevEvents,
-        results: prevEvents.results.map((event) => {
-          return event.id === id
-            ? { ...event, likes_count: event.likes_count - 1, like_id: null }
-            : event;
-        }),
+        results: prevEvents.results.map(event => {
+          return event.id === id ?
+           { ...event, likes_count: event.likes_count - 1, like_id: null } : event
+    }),
       }));
     } catch (err) {
       console.log(err);
     }
   };
 
+  const handleUndislike = async () => {
+    try {
+      if (dislike_id) {
+        await axiosRes.delete(`/event-dislikes/${dislike_id}/`);
+        setEvent(prevEvents => ({
+          ...prevEvents,
+          results: prevEvents.results.map(event => {
+            return event.id === id 
+            ? { ...event, dislikes_count: event.dislikes_count - 1, dislike_id: null } 
+            : event
+      }),
+        }));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+      
   return (
     <Card className={styles.Event}>
       <Card.Body>
@@ -70,7 +121,7 @@ const Event = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && eventPage && <MoreDropdown />}
+            {is_owner && eventPage && "..."}
           </div>
         </Media>
       </Card.Body>
@@ -82,16 +133,23 @@ const Event = (props) => {
         <Card.Text>{location}</Card.Text>
         <Card.Text>{description}</Card.Text>
         <div className={styles.EventBar}>
-          {like_id ? (
-            <span onClick={handleUninterest}>
-              <i className={`fas fa-star ${styles.Interested}`} /> Not Interested
-            </span>
+          {is_owner ? (
+            <OverlayTrigger placement="top" overlay={<Tooltip>You can't be interested or disinterest to your own event!</Tooltip>}>
+              <span className={styles.IconPlaceholder} />
+            </OverlayTrigger>
           ) : (
-            <span onClick={handleInterest}>
-              <i className={`far fa-star ${styles.NotInterested}`} /> Interested?
-            </span>
+            <>
+              <span onClick={like_id ? handleUnlike : handleInterest}>
+                <i className={`fa-solid fa-check ${styles.Icon}`}></i> {likes_count}
+              </span>
+              <span onClick={dislike_id ? handleUndislike : handleDisinterest}>
+                <i className={`fa-solid fa-xmark ${styles.Icon}`}></i> {dislikes_count}
+              </span>
+            </>
           )}
-          {likes_count} Interested
+          <Link to={`/posts/${id}/comments`}>
+            <i className="far fa-comments" /> {comments_count}
+          </Link>
         </div>
       </Card.Body>
     </Card>

@@ -5,7 +5,7 @@ import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
-import { MoreDropdown } from "../../components/MoreDropdown";
+
 
 const Post = (props) => {
   const {
@@ -16,6 +16,8 @@ const Post = (props) => {
     comments_count,
     likes_count,
     like_id,
+    dislikes_count, 
+    dislike_id, 
     title,
     content,
     image,
@@ -29,19 +31,49 @@ const Post = (props) => {
 
   const handleLike = async () => {
     try {
+      if (dislike_id) {
+        await axiosRes.delete(`/post-dislikes/${dislike_id}/`);
+      }
       const { data } = await axiosRes.post("/post-likes/", { post: id });
-      setPosts((prevPosts) => ({
+      setPosts(prevPosts => ({
         ...prevPosts,
-        results: prevPosts.results.map((post) => {
-          return post.id === id
-            ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
-            : post;
-        }),
+        results: prevPosts.results.map(post => (
+          post.id === id ? {
+            ...post,
+            likes_count: post.likes_count + 1,
+            like_id: data.id,
+            dislikes_count: dislike_id ? post.dislikes_count - 1 : post.dislikes_count,
+            dislike_id: null
+          } : post
+        )),
       }));
     } catch (err) {
       console.log(err);
     }
   };
+
+  const handleDisLike = async () => {
+    try {
+      if (like_id) {
+        await axiosRes.delete(`/post-likes/${like_id}/`);
+      }
+      const { data } = await axiosRes.post("/post-dislikes/", { post: id });
+      setPosts(prevPosts => ({
+        ...prevPosts,
+        results: prevPosts.results.map(post => (
+          post.id === id ? {
+            ...post,
+            dislikes_count: post.dislikes_count + 1,
+            dislike_id: data.id,
+            likes_count: like_id ? post.likes_count - 1 : post.likes_count,
+            like_id: null
+          } : post
+        )),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  }; 
 
   const handleUnlike = async () => {
     try {
@@ -58,6 +90,25 @@ const Post = (props) => {
       console.log(err);
     }
   };
+  
+  const handleUnDislikelike = async () => {
+    try {
+      if (dislike_id) {
+        await axiosRes.delete(`/post-dislikes/${dislike_id}/`);
+        setPosts((prevPosts) => ({
+          ...prevPosts,
+          results: prevPosts.results.map((post) => {
+            return post.id === id
+              ? { ...post, dislikes_count: post.dislikes_count - 1, dislike_id: null }
+              : post;
+          }),
+        }));
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+      
 
   return (
     <Card className={styles.Post}>
@@ -69,7 +120,7 @@ const Post = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && postPage && <MoreDropdown />}
+            {is_owner && postPage && "..."}
           </div>
         </Media>
       </Card.Body>
@@ -80,36 +131,27 @@ const Post = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
-          {is_owner ? (<OverlayTrigger
-            placement="top"
-            overlay={<Tooltip>You can't like your own post!</Tooltip>}
-          >
-            <i className="fa-solid fa-thumbs-up" />
-          </OverlayTrigger>
-          ) : like_id ? (
-            <span onClick={handleUnlike}>
-              <i className={`fa-solid fa-thumbs-up ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className={`fa-solid fa-thumbs-up ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like posts!</Tooltip>}
-            >
-              <i className="fa-solid fa-thumbs-up" />
+          {is_owner ? (
+            <OverlayTrigger placement="top" overlay={<Tooltip>You can't like or dislike your own post!</Tooltip>}>
+              <span className={styles.IconPlaceholder} />
             </OverlayTrigger>
+          ) : (
+            <>
+              <span onClick={like_id ? handleUnlike : handleLike}>
+                <i className={`fa-solid fa-thumbs-up ${styles.Icon}`}></i> {likes_count}
+              </span>
+              <span onClick={dislike_id ? handleUnDislikelike : handleDisLike}>
+                <i className={`fa-solid fa-thumbs-down ${styles.Icon}`}></i> {dislikes_count}
+              </span>
+            </>
           )}
-          <span>{likes_count}</span>
-          <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />
+          <Link to={`/posts/${id}/comments`}>
+            <i className="far fa-comments" /> {comments_count}
           </Link>
-          <span>{comments_count}</span>
         </div>
       </Card.Body>
     </Card>
   );
 };
+
 export default Post;
