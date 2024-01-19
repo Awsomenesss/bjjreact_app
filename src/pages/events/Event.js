@@ -30,7 +30,7 @@ const Event = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
-  const handleInterest = async () => {
+  const handleLike = async () => {
     try {
       if (dislike_id) {
         await axiosRes.delete(`/event-dislikes/${dislike_id}/`);
@@ -53,13 +53,13 @@ const Event = (props) => {
     }
   };
 
-  const handleDisinterest = async () => {
+  const handleDisLike = async () => {
     try {
-      
+
       if (like_id) {
         await axiosRes.delete(`/event-likes/${like_id}/`);
       }
-     
+
       const { data } = await axiosRes.post("/event-dislikes/", { event: id });
       setEvent(prevEvents => ({
         ...prevEvents,
@@ -85,8 +85,8 @@ const Event = (props) => {
         ...prevEvents,
         results: prevEvents.results.map(event => {
           return event.id === id ?
-           { ...event, likes_count: event.likes_count - 1, like_id: null } : event
-    }),
+            { ...event, likes_count: event.likes_count - 1, like_id: null } : event
+        }),
       }));
     } catch (err) {
       console.log(err);
@@ -100,17 +100,18 @@ const Event = (props) => {
         setEvent(prevEvents => ({
           ...prevEvents,
           results: prevEvents.results.map(event => {
-            return event.id === id 
-            ? { ...event, dislikes_count: event.dislikes_count - 1, dislike_id: null } 
-            : event
-      }),
+            return event.id === id
+              ? { ...event, dislikes_count: event.dislikes_count - 1, dislike_id: null }
+              : event
+          }),
         }));
       }
     } catch (err) {
       console.log(err);
     }
   };
-      
+
+
   return (
     <Card className={styles.Event}>
       <Card.Body>
@@ -125,7 +126,7 @@ const Event = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <Link to={`/events/${id}`}>
+      <Link to={`/event/${id}`}>
         <Card.Img src={image} alt={description} />
       </Link>
       <Card.Body>
@@ -139,15 +140,15 @@ const Event = (props) => {
             </OverlayTrigger>
           ) : (
             <>
-              <span onClick={like_id ? handleUnlike : handleInterest}>
-                <i className={`fa-solid fa-check ${styles.Icon}`}></i> {likes_count}
+              <span onClick={like_id ? handleUnlike : handleLike}>
+                <i className={`fa-solid fa-check ${like_id ? styles.IconClicked : styles.Icon}`}></i> {likes_count}
               </span>
-              <span onClick={dislike_id ? handleUndislike : handleDisinterest}>
-                <i className={`fa-solid fa-xmark ${styles.Icon}`}></i> {dislikes_count}
+              <span onClick={dislike_id ? handleUndislike : handleDisLike}>
+                <i className={`fa-solid fa-xmark ${dislike_id ? styles.IconClicked : styles.Icon}`}></i> {dislikes_count}
               </span>
             </>
           )}
-          <Link to={`/posts/${id}/comments`}>
+          <Link to={`/event/${id}/comments`}>
             <i className="far fa-comments" /> {comments_count}
           </Link>
         </div>

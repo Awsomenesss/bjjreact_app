@@ -15,7 +15,7 @@ import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import EventCreateForm from "./pages/events/EventCreateForm"; 
-import EventPage from './pages/events/Eventspage'; 
+import EventPage from './pages/events/EventPage';
 import EventsPage from "./pages/events/Eventspage";
 import HomePage from './pages/homePage/Homepage';
 

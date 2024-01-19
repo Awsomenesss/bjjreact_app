@@ -16,8 +16,8 @@ const Post = (props) => {
     comments_count,
     likes_count,
     like_id,
-    dislikes_count, 
-    dislike_id, 
+    dislikes_count,
+    dislike_id,
     title,
     content,
     image,
@@ -73,7 +73,7 @@ const Post = (props) => {
     } catch (err) {
       console.log(err);
     }
-  }; 
+  };
 
   const handleUnlike = async () => {
     try {
@@ -90,7 +90,7 @@ const Post = (props) => {
       console.log(err);
     }
   };
-  
+
   const handleUnDislikelike = async () => {
     try {
       if (dislike_id) {
@@ -108,7 +108,7 @@ const Post = (props) => {
       console.log(err);
     }
   };
-      
+
 
   return (
     <Card className={styles.Post}>
@@ -138,10 +138,10 @@ const Post = (props) => {
           ) : (
             <>
               <span onClick={like_id ? handleUnlike : handleLike}>
-                <i className={`fa-solid fa-thumbs-up ${styles.Icon}`}></i> {likes_count}
+                <i className={`fa-solid fa-thumbs-up ${like_id ? styles.IconClicked : styles.Icon}`}></i> {likes_count}
               </span>
               <span onClick={dislike_id ? handleUnDislikelike : handleDisLike}>
-                <i className={`fa-solid fa-thumbs-down ${styles.Icon}`}></i> {dislikes_count}
+                <i className={`fa-solid fa-thumbs-down ${dislike_id ? styles.IconClicked : styles.Icon}`}></i> {dislikes_count}
               </span>
             </>
           )}
