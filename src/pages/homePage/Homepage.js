@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row, Form, Container } from "react-bootstrap";
-import Post from "../Posts/Post"; 
-import Event from "../events/Event"; 
+import Post from "../Posts/Post";
+import Event from "../events/Event";
 import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
-import styles from "../../styles/PostsPage.module.css"; 
+import styles from "../../styles/PostsPage.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 
-function HomePage({ message }) {
+function HomePage({ message,  filter = "" }) {
   const [contentItems, setContentItems] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [query, setQuery] = useState("");
@@ -19,24 +19,33 @@ function HomePage({ message }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axiosReq.get(`/combined-posts-events/?search=${query}`);
+        const queryString = filter ? `${filter}&search=${query}` : `search=${query}`;
+        const { data } = await axiosReq.get(`/combined-posts-events/?${queryString}`);
+        console.log("Fetched Data:", data);
         setContentItems(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        console.log("Error fetching data:", err);;
       }
     };
 
     setHasLoaded(false);
-    fetchData();
-  }, [query]);
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+
+  }, [query, filter]); 
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
-        <Form className={styles.SearchBar} onSubmit={(e) => e.preventDefault()}>
+        <Form className={styles.SearchBar} 
+        onSubmit={(event) => event.preventDefault()}>
           <Form.Control
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -48,18 +57,18 @@ function HomePage({ message }) {
 
         {hasLoaded ? (
           <>
-            {contentItems.results.length ? (
-              <InfiniteScroll
-                dataLength={contentItems.results.length}
-                next={() => fetchMoreData(contentItems, setContentItems)}
-                hasMore={!!contentItems.next}
-                loader={<Asset spinner />}
-                children={contentItems.results.map((item) => (
-                  item.hasOwnProperty('date') 
-                    ? <Event key={item.id} {...item} />
-                    : <Post key={item.id} {...item} />
-                ))}
-              />
+          {contentItems.results.length ? (
+            <InfiniteScroll
+              dataLength={contentItems.results.length}
+              next={() => fetchMoreData(contentItems, setContentItems)}
+              hasMore={!!contentItems.next}
+              loader={<Asset spinner />}
+              children={contentItems.results.map((item) => (
+                item.hasOwnProperty('date') 
+                  ? <Event key={item.id} {...item} setEvents={setContentItems} />
+                  : <Post key={item.id} {...item} setPosts={setContentItems} />
+              ))}
+            />
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />

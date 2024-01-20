@@ -132,10 +132,19 @@ const Post = (props) => {
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (
-            <OverlayTrigger placement="top" overlay={<Tooltip>You can't like or dislike your own post!</Tooltip>}>
-              <span className={styles.IconPlaceholder} />
+            <>
+            <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
+              <span>
+                <i className={`fa-solid fa-thumbs-up ${styles.Icon}`}></i> {likes_count}
+              </span>
             </OverlayTrigger>
-          ) : (
+            <OverlayTrigger placement="top" overlay={<Tooltip>You can't dislike your own post!</Tooltip>}>
+              <span>
+                <i className={`fa-solid fa-thumbs-down ${styles.Icon}`}></i> {dislikes_count}
+              </span>
+            </OverlayTrigger>
+          </>
+          ) : currentUser ? (
             <>
               <span onClick={like_id ? handleUnlike : handleLike}>
                 <i className={`fa-solid fa-thumbs-up ${like_id ? styles.IconClicked : styles.Icon}`}></i> {likes_count}
@@ -143,6 +152,19 @@ const Post = (props) => {
               <span onClick={dislike_id ? handleUnDislikelike : handleDisLike}>
                 <i className={`fa-solid fa-thumbs-down ${dislike_id ? styles.IconClicked : styles.Icon}`}></i> {dislikes_count}
               </span>
+            </>
+          ) : (
+            <>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like posts!</Tooltip>}>
+                <span>
+                  <i className={`fa-solid fa-thumbs-up ${styles.Icon}`}></i> {likes_count}
+                </span>
+              </OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like posts!</Tooltip>}>
+                <span>
+                  <i className={`fa-solid fa-thumbs-down ${styles.Icon}`}></i> {dislikes_count}
+                </span>
+              </OverlayTrigger>
             </>
           )}
           <Link to={`/posts/${id}/comments`}>

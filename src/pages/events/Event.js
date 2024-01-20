@@ -135,10 +135,19 @@ const Event = (props) => {
         <Card.Text>{description}</Card.Text>
         <div className={styles.EventBar}>
           {is_owner ? (
-            <OverlayTrigger placement="top" overlay={<Tooltip>You can't be interested or disinterest to your own event!</Tooltip>}>
-              <span className={styles.IconPlaceholder} />
-            </OverlayTrigger>
-          ) : (
+            <>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Alredy showed your interest by posting it!</Tooltip>}>
+                <span>
+                  <i className={`fa-solid fa-check ${styles.Icon}`}></i> {likes_count}
+                </span>
+              </OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Already showed your interest by posting it!</Tooltip>}>
+                <span>
+                  <i className={`fa-solid fa-xmark ${styles.Icon}`}></i> {dislikes_count}
+                </span>
+              </OverlayTrigger>
+            </>
+          ) : currentUser ? (
             <>
               <span onClick={like_id ? handleUnlike : handleLike}>
                 <i className={`fa-solid fa-check ${like_id ? styles.IconClicked : styles.Icon}`}></i> {likes_count}
@@ -146,6 +155,19 @@ const Event = (props) => {
               <span onClick={dislike_id ? handleUndislike : handleDisLike}>
                 <i className={`fa-solid fa-xmark ${dislike_id ? styles.IconClicked : styles.Icon}`}></i> {dislikes_count}
               </span>
+            </>
+          ) : (
+            <>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Log in to show interest to this event !</Tooltip>}>
+                <span>
+                  <i className={`fa-solid fa-check ${styles.Icon}`}></i> {likes_count}
+                </span>
+              </OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={<Tooltip>Log in to show interest in to this event !</Tooltip>}>
+                <span>
+                  <i className={`fa-solid fa-xmark ${styles.Icon}`}></i> {dislikes_count}
+                </span>
+              </OverlayTrigger>
             </>
           )}
           <Link to={`/event/${id}/comments`}>
