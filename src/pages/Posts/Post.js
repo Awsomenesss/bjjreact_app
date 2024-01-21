@@ -5,6 +5,8 @@ import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const Post = (props) => {
@@ -28,6 +30,20 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -120,7 +136,7 @@ const Post = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && postPage && "..."}
+            {is_owner && postPage && <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />}
           </div>
         </Media>
       </Card.Body>
@@ -133,17 +149,17 @@ const Post = (props) => {
         <div className={styles.PostBar}>
           {is_owner ? (
             <>
-            <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
-              <span>
-                <i className={`fa-solid fa-thumbs-up ${styles.Icon}`}></i> {likes_count}
-              </span>
-            </OverlayTrigger>
-            <OverlayTrigger placement="top" overlay={<Tooltip>You can't dislike your own post!</Tooltip>}>
-              <span>
-                <i className={`fa-solid fa-thumbs-down ${styles.Icon}`}></i> {dislikes_count}
-              </span>
-            </OverlayTrigger>
-          </>
+              <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
+                <span>
+                  <i className={`fa-solid fa-thumbs-up ${styles.Icon}`}></i> {likes_count}
+                </span>
+              </OverlayTrigger>
+              <OverlayTrigger placement="top" overlay={<Tooltip>You can't dislike your own post!</Tooltip>}>
+                <span>
+                  <i className={`fa-solid fa-thumbs-down ${styles.Icon}`}></i> {dislikes_count}
+                </span>
+              </OverlayTrigger>
+            </>
           ) : currentUser ? (
             <>
               <span onClick={like_id ? handleUnlike : handleLike}>

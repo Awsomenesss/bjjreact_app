@@ -18,6 +18,7 @@ import EventCreateForm from "./pages/events/EventCreateForm";
 import EventPage from './pages/events/EventPage';
 import EventsPage from "./pages/events/Eventspage";
 import HomePage from './pages/homePage/Homepage';
+import EventEditForm from "./pages/events/EventEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -72,6 +73,7 @@ function App() {
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/event/:id" render={() => <EventPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
+          <Route exact path="/event/:id/edit" render={() => <EventEditForm />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route
             exact
