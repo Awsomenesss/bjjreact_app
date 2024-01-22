@@ -63,7 +63,11 @@ function EventPage() {
                 profile_image={comment.profile_image}
                 owner={comment.owner}
                 updated_at={comment.updated_at}
-                content={comment.content} />
+                content={comment.content}
+                id={comment.id}
+                setEvent={setEvent} 
+                setComments={setComments}
+                />
             ))
           ) : currentUser ? (
             <span>No comments yet, be the first to comment!</span>
