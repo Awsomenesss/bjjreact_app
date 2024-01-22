@@ -8,7 +8,7 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
-function EventCommentCreateForm(props) {
+function CommentCreateForm(props) {
   const { event, setEvent, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
 
@@ -16,22 +16,22 @@ function EventCommentCreateForm(props) {
     setContent(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const { data } = await axiosRes.post("/event-comments/", {
         content,
-        event, 
+        event,
       });
       setComments((prevComments) => ({
         ...prevComments,
         results: [data, ...prevComments.results],
       }));
-      setEvent((prevEvent) => ({
+      setEvent((prevPost) => ({
         results: [
           {
-            ...prevEvent.results[0],
-            comments_count: prevEvent.results[0].comments_count + 1,
+            ...prevPost.results[0],
+            comments_count: prevPost.results[0].comments_count + 1,
           },
         ],
       }));
@@ -69,4 +69,4 @@ function EventCommentCreateForm(props) {
   );
 }
 
-export default EventCommentCreateForm;
+export default CommentCreateForm;
