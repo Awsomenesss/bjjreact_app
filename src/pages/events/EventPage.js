@@ -12,6 +12,10 @@ import EventCommentCreateForm from "../comments/EventCommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import EventComment from "../comments/EventComment";
 
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
+
 
 function EventPage() {
   const { id } = useParams();
@@ -24,13 +28,14 @@ function EventPage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: event }, { data: comments }] = await await Promise.all([
+        const [{ data: event }, { data: comments }] = await Promise.all([
           axiosReq.get(`/event/${id}`),
-          axiosReq.get(`/event-comments/?event/${id}`)
+          axiosReq.get(`/event-comments/?event=${id}`)
         ]);
         setEvent({ results: [event] });
         setComments(comments);
         console.log(event);
+        console.log(comments)
       } catch (err) {
         console.log(err);
       }
@@ -56,7 +61,13 @@ function EventPage() {
             "Comments"
           ) : null}
           {comments.results.length ? (
-            comments.results.map((comment) => (
+            <InfiniteScroll
+            dataLength={comments.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!comments.next}
+            next={() => fetchMoreData(comments, setComments)}
+          >
+            {comments.results.map((comment) => (
               <EventComment
                 key={comment.id}
                 profile_id={comment.profile_id}
@@ -65,10 +76,11 @@ function EventPage() {
                 updated_at={comment.updated_at}
                 content={comment.content}
                 id={comment.id}
-                setEvent={setEvent} 
+                setEvent={setEvent}
                 setComments={setComments}
-                />
-            ))
+              />
+            ))}
+          </InfiniteScroll>
           ) : currentUser ? (
             <span>No comments yet, be the first to comment!</span>
           ) : (
