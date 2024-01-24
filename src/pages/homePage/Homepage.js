@@ -65,8 +65,18 @@ function HomePage({ message,  filter = "" }) {
               loader={<Asset spinner />}
               children={contentItems.results.map((item) => (
                 item.hasOwnProperty('date') 
-                  ? <Event key={item.id} {...item} setEvents={setContentItems} />
-                  : <Post key={item.id} {...item} setPosts={setContentItems} />
+                  ? <Event 
+                  key={item.id} 
+                  {...item} 
+                  setEvent={setContentItems} 
+                  likes_count={item.likes_count}
+                  dislikes_count={item.dislikes_count}
+                  comments_count={item.comments_count} 
+                />
+                  : <Post key={item.id} {...item} setPosts={setContentItems} 
+                  likes_count={item.likes_count}
+                  dislikes_count={item.dislikes_count}
+                  comments_count={item.comments_count} />
               ))}
             />
             ) : (

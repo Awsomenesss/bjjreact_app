@@ -8,8 +8,10 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Asset";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function EventCreateForm() {
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const [eventData, setEventData] = useState({
     description: "",

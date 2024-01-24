@@ -186,7 +186,7 @@ const Event = (props) => {
               </OverlayTrigger>
             </>
           )}
-          <Link to={`/event/${id}/comments`}>
+          <Link to={`/event/${id}`}>
             <i className="far fa-comments" /> {comments_count}
           </Link>
         </div>
