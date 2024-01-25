@@ -86,6 +86,7 @@ You can view the back-end README.md here - <a href="" target="_blank" rel="noope
 
    ### **UX Design**
 
-   Each stage of the UX design process involved revisiting the purpose of the product and reflecting on the goals of every User Story. 
+   The UX design process involved creating 2 wire frame pages , the home page and  the profile page. 
 
-   - 
+  
+   ![BJJ connect responsive design](/src/assets/readMe_images/home page.PNG)
