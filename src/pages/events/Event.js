@@ -42,7 +42,7 @@ const Event = (props) => {
       await axiosRes.delete(`/event/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
+     
     }
   };
 
@@ -65,7 +65,7 @@ const Event = (props) => {
         )),
       }));
     } catch (err) {
-      console.log(err);
+   
     }
   };
 
@@ -90,7 +90,7 @@ const Event = (props) => {
         )),
       }));
     } catch (err) {
-      console.log(err);
+     
     }
   };
 
@@ -105,7 +105,7 @@ const Event = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      
     }
   };
 
@@ -123,7 +123,7 @@ const Event = (props) => {
         }));
       }
     } catch (err) {
-      console.log(err);
+   
     }
   };
 

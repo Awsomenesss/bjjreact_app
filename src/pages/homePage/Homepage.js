@@ -21,11 +21,11 @@ function HomePage({ message,  filter = "" }) {
       try {
         const queryString = filter ? `${filter}&search=${query}` : `search=${query}`;
         const { data } = await axiosReq.get(`/combined-posts-events/?${queryString}`);
-        console.log("Fetched Data:", data);
+       
         setContentItems(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log("Error fetching data:", err);;
+       
       }
     };
 

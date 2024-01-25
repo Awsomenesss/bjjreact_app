@@ -32,7 +32,7 @@ function EventEditForm() {
 
         is_owner ? setEventData({ description,date,time,location,image }) : history.push("/");
       } catch (err) {
-        console.log(err);
+      
       }
     };
 
@@ -73,7 +73,7 @@ function EventEditForm() {
      await axiosReq.put(`/event/${id}/`, formData);
       history.push(`/event/${id}`);
     } catch (err) {
-      console.log(err);
+     
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

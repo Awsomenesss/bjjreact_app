@@ -59,7 +59,7 @@ const ProfileEditForm = () => {
                         profile_image: data.profile_image});
 
                 } catch (err) {
-                    console.log(err);
+                   
                     history.push("/");
                 }
             } else {
@@ -90,19 +90,18 @@ const ProfileEditForm = () => {
             formData.append("profile_image", imageFile?.current?.files[0]);
         }
 
-        console.log(formData.profile_image)
+       
 
         try {
             const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
-            console.log(data)
+           
             setCurrentUser((currentUser) => ({
                 ...currentUser,
                 profile_image: data.profile_image,
             }));
             history.goBack();
         } catch (err) {
-            console.log(err);
-            console.log(err.response)
+   
             setErrors(err.response?.data);
         }
     
@@ -221,7 +220,7 @@ const ProfileEditForm = () => {
                                 onChange={(e) => {
                                     if (e.target.files.length) {
                                         
-                                        console.log("Selected file:", e.target.files[0]);
+                                     
 
                                         setProfileData({
                                             ...profileData,

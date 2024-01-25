@@ -57,7 +57,7 @@ function ProfilePage() {
         setProfileEvents(profileEvents);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+     
       }
     };
     fetchData();
@@ -171,7 +171,6 @@ function ProfilePage() {
       )}
     </>
   );
-  console.log(profileEvents)
 
   return (
     <Row>

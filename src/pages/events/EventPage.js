@@ -34,10 +34,9 @@ function EventPage() {
         ]);
         setEvent({ results: [event] });
         setComments(comments);
-        console.log(event);
-        console.log(comments)
+      
       } catch (err) {
-        console.log(err);
+    
       }
     };
     handleMount();
