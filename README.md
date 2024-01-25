@@ -9,3 +9,5 @@ You can view the front-end README.md here - <a href="" target="_blank" rel="noop
 
 You can view the back-end README.md here - <a href="" target="_blank" rel="noopener"> Back-End README</a>
 
+![BJJ connect responsive design](/workspace/bjjreact_app/src/assets/readMe_images/responsive.PNG)
+
