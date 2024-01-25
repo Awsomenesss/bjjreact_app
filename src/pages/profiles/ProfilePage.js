@@ -77,7 +77,7 @@ function ProfilePage() {
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
-          <p><strong>Name:</strong> {profile?.name || 'No name provided'}</p>
+          <p><strong>Club Name:</strong> {profile?.name || 'No name provided'}</p>
           <p><strong>Introduction:</strong> {profile?.introduction || 'No introduction provided'}</p>
           <p><strong>Belt Color:</strong> {profile?.belt_color}</p>
           <p><strong>Gi / No-Gi:</strong> {profile?.gi_or_no_gi || 'Not specified'}</p>
