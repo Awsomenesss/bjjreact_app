@@ -1,4 +1,5 @@
 **_BJJconnect - Project Portfolio 5 - Advanced Front End (React)_**
+
 Bjj connect is developed and submitted as my fifth Profile Portfolio Project as part of the Advanced Frontend specialization for Code Institute's Diploma in full-stack software development. The website is used by a fictional online community of BJJ(Brazilian jiu-jitsu) to share memories and events scheduled for the future.
 
 You can view the live site here - <a href="https://bjj-fcb7bcc1efc9.herokuapp.com/" target="_blank" rel="noopener">Bjj Connect</a>
@@ -89,3 +90,27 @@ You can view the back-end README.md here - <a href="" target="_blank" rel="noope
    The UX design process involved creating 2 wire frame pages , the home page and  the profile page. 
 
 ![Balsamiq wieframes 1](src/assets/readMe_images/homepage.PNG)
+  ### **UI Design**
+   
+   Given the nature of the project being a social platform, it was paramount that the aesthetic served a range purposes. The main priority is :
+
+   - **Readability and Accessibility**:  The use of a white background (#ffffff) is a classic choice that provides a clean and uncluttered canvas. This high-contrast background is beneficial for readability as it makes text and other elements stand out clearly while the consistent use of Roboto Condensed makes it easier to read at various sizes and resolutions.
+
+   - **Feedback and Interactivity**: the standard expectations of today's users around UI had to be considered. This project attempts to use these taken-for-granted expectations to maximise the impact of basic features on the user, such as changing the color of a button when it's hovered over or clicked.
+Often, websites opt for more subtle and subdued shifts between colors to notify users of any data changes happening and to provide real-time feedback to users. SpoodleSapce uses both subtle color themes familiar to users and then loud unexpected strong contrasting colors to achieve a more intense and enhanced UI depending on the context. 
+
+   - **Consistency Across Components**: the styling defined in each of the separate CSS modules reuses a color scheme that can be efficiently applied to the different components as needed, ensuring a consistent look and feel.
+
+   **Color Scheme**
+
+   The main colors applied throughout the project are:
+  - `#f8f8f8`
+  - `#ffffff`
+  - `#525252`
+  - `#013af7`
+  - `#cfced3`
+  - `#2142b2`
+  - `#f1f1f1`
+  - `#888`
+  - `#555`
+These colors are used for background colors, text colors, and border colors.
