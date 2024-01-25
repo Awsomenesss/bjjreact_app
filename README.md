@@ -88,5 +88,4 @@ You can view the back-end README.md here - <a href="" target="_blank" rel="noope
 
    The UX design process involved creating 2 wire frame pages , the home page and  the profile page. 
 
-  
-   ![BJJ connect responsive design](/src/assets/readMe_images/home page.PNG)
+![Balsamiq wieframes 1](src/assets/readMe_images/homepage.PNG)
