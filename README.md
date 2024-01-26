@@ -372,8 +372,6 @@ Heroku was used to deploy this project by the following these steps:
 
 ### [**Credits**](#credits)
 
-  - [W3Schools](https://www.w3schools.com/) 
-  - [Stack Overflow](https://stackoverflow.com/)
   - Code Institute's [Moments](https://github.com/Code-Institute-Solutions/moments) module.
 
 
