@@ -10,7 +10,7 @@ You can view the live API here - <a href="https://pp5-bjj-api-2269f4220822.herok
 
 You can view the front-end README.md here - <a href="https://github.com/Awsomenesss/bjjreact_app/edit/main/README.md" target="_blank" rel="noopener"> Front-End README</a>
 
-You can view the back-end README.md here - <a href="" target="_blank" rel="noopener"> Back-End README</a>
+You can view the back-end README.md here - <a href="https://github.com/Awsomenesss/pp5_api/blob/main/README.md" target="_blank" rel="noopener"> Back-End README</a>
 
 ![BJJ connect responsive design](/src/assets/readMe_images/responsive.PNG)
 
