@@ -1,4 +1,6 @@
-**_BJJconnect - Project Portfolio 5 - Advanced Front End (React)_**
+## BJJconnect ## 
+
+**_Project Portfolio 5 - Advanced Front End (React)_**
 
 Bjj connect is developed and submitted as my fifth Profile Portfolio Project as part of the Advanced Frontend specialization for Code Institute's Diploma in full-stack software development. The website is used by a fictional online community of BJJ(Brazilian jiu-jitsu) to share memories and events scheduled for the future.
 
