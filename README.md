@@ -223,15 +223,16 @@ To achieve the site goals outlined in the User Stories section above, the develo
 ### [**Testing**](#testing)
 
 - **Code Validation**
-    ![JSX Compiler](/src/assets)
+    ![JSX Compiler](src/assets/readMe_images/validation.PNG)
 
 - **Lighthouse Testing**
  This project has undergone development with a primary focus on functionality and features. While it delivers the intended functionality, it's important to note that the current version have performance issues that result in lower Lighthouse scores and slower load times.
 
 the low score is consistent across all pages the below shows the lighthouse score accros the main pages. Optimization will be carried out after the assessment  
 
-![Lighthouse 1](/src/assets/)
-![Lighthouse 1](/src/assets/)
+![Lighthouse 1](src/assets/readMe_images/page1.PNG)
+![Lighthouse 1](src/assets/readMe_images/page3.PNG)
+![Lighthouse 1](src/assets/readMe_images/preformance.PNG)
 
       
 
