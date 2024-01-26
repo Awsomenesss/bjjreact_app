@@ -223,22 +223,15 @@ To achieve the site goals outlined in the User Stories section above, the develo
 ### [**Testing**](#testing)
 
 - **Code Validation**
+    ![JSX Compiler](/src/assets)
 
-    Manual testing of every feature, component and page was conducted on an ongoing basis throughout development. All test cases performed as intended and passed. The most important of these, regarding users being able to Create, Read, Update and Delete data, included:
+- **Lighthouse Testing**
+ This project has undergone development with a primary focus on functionality and features. While it delivers the intended functionality, it's important to note that the current version have performance issues that result in lower Lighthouse scores and slower load times.
 
-    - Overlays
-    - Tooltips
-    - forms 
-    - search bars
-    - links
-    - dropdown menus
-    - redirects
-    - authentication
-    - ownership
-    - toggles
-    - buttons 
-    - uploading images
+the low score is consistent across all pages the below shows the lighthouse score accros the main pages. Optimization will be carried out after the assessment  
 
-    A separate file providing details of all the test cases carried out can be found
+![Lighthouse 1](/src/assets/)
+![Lighthouse 1](/src/assets/)
+
       
 
