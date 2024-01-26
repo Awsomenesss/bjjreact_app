@@ -114,3 +114,20 @@ Often, websites opt for more subtle and subdued shifts between colors to notify 
   - `#888`
   - `#555`
 These colors are used for background colors, text colors, and border colors.
+
+The front-end library chosen for the project was [React Bootstrap](https://github.com/react-bootstrap/react-bootstrap) to combine the component-based approach of React with the styling and design principles of Bootstrap. The advantage of this decision was directly linked to the tight timeframe for delivering a MVP. Its 'out of the box' components and pre-built styles removed a significant amount of the time and energy required. Other advantages of its key features for this project include:
+
+- React Components: It provides React-compatible versions of Bootstrap components, allowing developers to use them in their React applications seamlessly.
+
+- Responsive Design: React Bootstrap components are designed to be responsive, adapting to different screen sizes and devices.
+
+- Customization: While React Bootstrap provides ready-to-use components, developers can still customize and extend these components to meet the specific requirements of their applications.
+
+- Integration: React Bootstrap can be easily integrated into existing React projects. Developers can import individual components or the entire library based on their needs.
+
+- Maintained and Updated: React Bootstrap is actively maintained and updated to align with the latest versions of React and Bootstrap.
+
+### [**Agile Development Process**](#agile-development-process)
+
+  - Github Projects was used to structure the workflow. 
+  - View the Project on Github [**Here**](https://github.com/users/Awsomenesss/projects/19)
