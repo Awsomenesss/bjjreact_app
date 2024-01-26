@@ -6,7 +6,7 @@ You can view the live site here - <a href="https://bjj-fcb7bcc1efc9.herokuapp.co
 
 You can view the live API here - <a href="https://pp5-bjj-api-2269f4220822.herokuapp.com/" target="_blank" rel="noopener">BJJ API</a>
 
-You can view the front-end README.md here - <a href="" target="_blank" rel="noopener"> Front-End README</a>
+You can view the front-end README.md here - <a href="https://github.com/Awsomenesss/bjjreact_app/edit/main/README.md" target="_blank" rel="noopener"> Front-End README</a>
 
 You can view the back-end README.md here - <a href="" target="_blank" rel="noopener"> Back-End README</a>
 
@@ -222,10 +222,11 @@ To achieve the site goals outlined in the User Stories section above, the develo
 
 ### [**Testing**](#testing)
 
-- **Code Validation**
-    ![JSX Compiler](src/assets/readMe_images/validation.PNG)
+  - ### Code Validation
 
-- **Lighthouse Testing**
+  ![JSX Compiler](src/assets/readMe_images/validation.PNG)
+
+   - ###Lighthouse Testing**
  This project has undergone development with a primary focus on functionality and features. While it delivers the intended functionality, it's important to note that the current version have performance issues that result in lower Lighthouse scores and slower load times.
 
 the low score is consistent across all pages the below shows the lighthouse score accros the main pages. Optimization will be carried out after the assessment  
@@ -234,5 +235,151 @@ the low score is consistent across all pages the below shows the lighthouse scor
 ![Lighthouse 1](src/assets/readMe_images/page3.PNG)
 ![Lighthouse 1](src/assets/readMe_images/preformance.PNG)
 
-      
+- ## Responsiveness Testing
 
+  I've responsive testing for all pages for the following devices.
+
+  - iPhone SE
+  - iPhone 12 Pro
+  - Pixel 5
+  - iPad Air
+  - iPad Mini
+  - Surface Pro 7
+  - Surface Duo
+  - Galaxy Fold
+
+ 
+ Upon initial responsive testing, I did find some minor alignment and size issues which have been documented in the Bugs Found section but they have now been rectified and the website is responsive on all the above devices
+      
+- ## Manual Testing Pages
+
+| Page                 | Expected Result                                                                                                   | Pass/Fail |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- | --------- |
+| Homepage             | Loading the website renders the both the posts and eventes  page                                                  | Pass      |
+| Homepage             | The navigation and the footer components don't load                                                               | Pass      |
+| Homepage             | Hovering over the continue button turns the button blue                                                           | Pass      |
+| Homepage             | Clicking the continue button navigates the user to the home page                                                  | Pass      |
+| Home                 | The navigation bar is displayed to the user and all functionality works as per the navigation manual tests        | Pass      |
+| Home                 | The role icons are displayed to the user and all functionality works as per the role icon manual tests            | Pass      |
+| Home                 | The posts/events cards are displayed to the user and all functionality works as per the role icon manual tests    | Pass      |
+| posts page           | can edit post fields details displayed to the user                                                                | Pass      |
+| Events Page          | can edit event  fields details is displayed to the user                                                           | Pass      |
+| profile page         | can edit user profile feild details                                                                               | Pass      |
+| post/event pages     | The edit champion icon is only displayed to staff members only                                                    | Pass      |
+| Champion Page        | Clicking the edit champion icon loads the ChampionEdit component with the correct data                            | Pass      |
+| Sign In Page         | Clicking the username input box allows the user to input alphanumeric characters                                  | Pass      |
+| Sign In Page         | Clicking the password input box allows the user to input alphanumeric characters                                  | Pass      |
+| Sign In Page         | Clicking the sign in button will sign the user in if correct credentials have been entered                        | Pass      |
+| Sign In Page         | Clicking the sign in button will not sign the user in if incorrect credentials have been entered                  | Pass      |
+| Sign In Page         | Clicking the "sign up" text will navigate the user to the sign up page                                            | Pass      |
+| Sign Up Page         | Clicking the username input box allows the user to input alphanumeric characters                                  | Pass      |
+| Sign Up Page         | Clicking the password input box allows the user to input alphanumeric characters                                  | Pass      |
+| Sign Up Page         | Clicking the confirm password input box allows the user to input alphanumeric characters                          | Pass      |
+| Sign Up Page         | Clicking the sign up button will sign the user up if correct credentials have been entered                        | Pass      |
+| Sign Up Page         | Clicking the "sign in" text will navigate the user to the sign in page                                            | Pass      |
+| Profile Page         | Clicking the profile avatar image will allow the user to select a new image for their profile avatar              | Pass      |
+| Profile Page         | Selecting a new image for the profile avatar will render the save button                                          | Pass      |
+| Profile Page         | Clicking the save button on the profile avatar will deal with the image update request to the API                 | Pass      |
+| posts page           | can create and change post fields details displayed to the user before submiting                                  | Pass      |
+| Events Page          | can create and change event fields details displayed to the user before submiting                                 | Pass      |
+
+<br />
+
+- ## Manual Testing Features (Avatar, Login User, Likes, Dislikes, User Posts/Events)
+
+| Feature            | Expected Result                                                                                           | Pass/Fail |
+| ------------------ | --------------------------------------------------------------------------------------------------------- | --------- |
+| Navigation         | The logo appears on the left-hand side                                                                   |   Pass    |
+| Navigation         | The logo redirects the user to the /home page when clicked                                               |   Pass    |
+| Navigation         | The search bar is positioned in the middle below navigation bar                                         |   Pass    |
+| Navigation         | The avatar icon appears on the right-hand side                                                           |   Pass    |
+| Navigation         | When the user is logged out, avatar is not  rendered                                                     |   Pass    |
+| Navigation         | When the user is logged in, the user's profile avatar is rendered                                         |   Pass    |
+| Navigation         | When the user is logged out, clicking the "Sign In" and "Sign Up" options can either log in or log out    |   Pass    |
+| Navigation         | If a logged out user clicks "About," it redirects the user to the  page                        |   Pass    |
+| Navigation         | If a logged out user clicks "Sign Up," it redirects the user to the /signup page                         |   Pass    |
+| Navigation         | If a logged out user clicks "Sign In," it redirects the user to the /signin page                         |   Pass    |
+| Navigation         | If a logged in user clicks "Home," it redirects the user to the /home page                                |   Pass    |
+| Navigation         | If a logged in user clicks "Profile," it redirects the user to the /profile/{profile_id} page             |   Pass    |
+| Navigation         | If a logged in user clicks "Feed," it redirects the user to the feed page showing posts/events they liked |   Pass    |
+| Navigation         | If a logged in user clicks "Liked," it redirects the user to the liked posts page                         |   Pass    |
+| Navigation         | If a logged in user clicks "Log Out," it redirects the user to the /home page and logs the user out        |   Pass    |
+| User Avatar        | Clicking the user avatar redirects the user to their profile page                                        |   Pass    |
+| Post/Event Card    | The post/event card contains the post/event title                                                         |   Pass    |
+| Post/Event Card    | The post/event card contains the post/event content                                                       |   Pass    |
+| Likes and Dislikes | As a logged out user, clicking the like and dislike buttons for posts and events do not register likes or dislikes |   Pass |
+| Likes and Dislikes | As a logged in user, clicking the like button for a post/event changes the button color to red and registers the like |   Pass |
+| Likes and Dislikes | As a logged in user, clicking the dislike button for a post/event changes the button color to red and registers the dislike |   Pass |
+| Likes and Dislikes | Users cannot like and dislike the same post/event                                                                          | Pass |
+| Likes and Dislikes | Clicking the like button again for a post/event removes the like                                                           | Pass |
+| Likes and Dislikes | Clicking the dislike button again for a post/event removes the dislike                                                      | Pass |
+| User Posts/Events  | As a logged in user, creating a post/event redirects the user to the newly created card                                     | Pass |
+| User Posts/Events  | As a logged in user, the user's posts/events are displayed on their profile page                                            | Pass |
+
+ <br />
+
+ ### [**Deployment**](#deployment)
+
+Heroku was used to deploy this project by the following these steps:
+
+1. Create or log in to your account on [Heroku.com](https://www.heroku.com/)
+2. Click "New" and select "Create new app", then add a unique app name and choose your region
+3. Click on create app
+4. Push your changes to GitHub
+5. Push the code to Heroku using the command git push Heroku main
+6. Log in to heroku.com and open the dashboard for your React application (this is separate from the Django Rest Framework application that runs the API). In settings, make sure that the 'Config Vars' match the env.py file and that DEBUG and DEVELOPMENT are set correctly. 
+7. Before Selecting the “Deploy” tab in the dashboard, add 'Python' to the 'buildpack' if not already present. 
+8. Connect to Github, the relevant repository and choose the correct branch before clicking on “Deploy Branch”
+9. When you see the message “deployed to Heroku” in the build log, click the “open app” button at the top of the page.
+
+### [**Technologies used**](#technologies-used)
+  
+  - **Languages**
+
+    - HTML
+    - CSS
+    - JavaScript
+
+  
+  - **Libraries, frameworks and dependencies**
+
+    - [React](https://reactjs.org/) was the core library used for building this website.
+
+    - [React Router](https://v5.reactrouter.com/web/guides/philosophy)  handled the navigation between views and components.
+
+    - [React Infinite Scroll](https://www.npmjs.com/package/react-infinite-scroll-component) was used for to load content as the user scrolls down the page.
+
+    - [Axios](https://axios-http.com/) is used here to make the HTTP requests and handle data fetching.
+
+
+    - [React Bootstrap](https://react-bootstrap.github.io/) provided the pre-built UI components described above. 
+
+
+    - [Font Awesome](https://fontawesome.com/) allowed me to use scalable vector icons which add value to the UX.
+
+    - [Cloudinary](https://cloudinary.com/) is the cloud-based image and video management platform used.
+
+  
+  - **Development tools and programs**
+
+    - [Git pod](https://https://gitpod.io/)
+    - [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+    - [GitHub](https://github.com/)
+    - [ElephantSQL](https://customer.elephantsql.com/)
+    - [Heroku](https://dashboard.heroku.com)
+  
+
+
+### [**Credits**](#credits)
+
+  - [W3Schools](https://www.w3schools.com/) 
+  - [Stack Overflow](https://stackoverflow.com/)
+  - Code Institute's [Moments](https://github.com/Code-Institute-Solutions/moments) module.
+
+
+  - The [README template](https://github.com/Code-Institute-Solutions/readme-template) provided by Code Institute.
+
+  -  Thanks to the code institute tutors and student care for their support and understanding  
+
+ 
+   Thank you very much. 
