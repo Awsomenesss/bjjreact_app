@@ -131,3 +131,114 @@ The front-end library chosen for the project was [React Bootstrap](https://githu
 
   - Github Projects was used to structure the workflow. 
   - View the Project on Github [**Here**](https://github.com/users/Awsomenesss/projects/19)
+
+To achieve the site goals outlined in the User Stories section above, the development process was divided into sprints with three categories using the MoSCoW method. This helped prioritize the implementation of features based on their importance.
+
+- **Must Have**
+
+  - User Authentication: Users can create an account, sign in, and sign out.
+  - User Profiles: CRUD functionality for users to personalize their presence on the website through profile pages.
+  - Followers Feed: Users can view a list of posts by other users they are following. The logic for this feature can be found in the `utils.js`, `ProfileDataContext.js`, and `ProfilePage.js` files.
+  - Liked Feed: Users can view a feed of posts they have liked. This feature is implemented in the `Navbar.js` component.
+  - Image Posts: Users can create, read, update, and delete posts with images, titles, and descriptions.
+  - Custom Models and Forms: Three custom models and corresponding forms with CRUD functionalities that are relevant to the site goal.
+  - README.md files for the frontend and backend repositories.
+  - Testing
+
+
+- **Should Have**
+
+  - Infinite Scroll: Implementing infinite scroll functionality for an improved user experience.
+  - Search Bars: Users can search for posts and navigate to pages related to the three custom models and forms.
+
+- **Could Have**
+
+   - Online Resources: A feature that provides users with access to relevant websites and a list of online resources related to the site goal.
+
+- **Would Have**
+
+    - Add functionality to upload video to posts.
+    - events to be location specific
+ 
+### [**Typography**](#typography)
+
+- The main font-family used throughout the project was "Roboto Condensed", "sans-serif". 
+
+- These fonts were chosen for their well-defined letterforms, making it easier for users to read content and the limited use of fontes allow consistency in typography across the app. 
+
+### [**Main Features**](#main-features)
+
+ - Each of the features and goals for every User Stories outlined in detail above were implemented.
+
+ - The React library provided menu of reusable components that were vital to allowing me using specific element across multiple features on the frontend on the project. These invaluable components saved me an immeasurable amount of time. I either customized or relied heavily on the following to meet the site goal:
+
+    - Assets.js
+    - Avatar.js
+    - MoreDropDown.js
+    - ProfileEditDropdown.js
+    - Navbar.js 
+    - NotFound.js
+ **Asset.js**
+
+    This component can display an image, a spinner, and/or a message to the user depending on the circumstances. It accepts the following props:
+
+    - `spinner`: A boolean indicating whether to display a spinner animation.
+    - `src`: The source URL of an image.
+    - `message`: A message to display.
+
+    **Avatar.js**
+
+      This component is used to display the user's personalised avatar with an image they are able to choose. It accepts the following props:
+
+      - `src`: The source URL of the avatar image.
+      - `height`: The height of the avatar image.
+      - `text`: Text to overlay on the avatar.
+
+    **MoreDropdown.js**
+
+      This component represents a dropdown menu with options for the user to edit and delete details as needed. It uses Bootstrap's Dropdown component and accepts two callback functions:
+
+      - `handleEdit`: A callback function for the edit action.
+      - `handleDelete`: A callback function for the delete action.
+
+      **ProfileEditDropdown.js**
+
+      Similar to `MoreDropdown`, this component allows the user to use a dropdown menu with options for editing their profile. It accepts the `id` of the profile to determine where to redirect for editing.
+
+      **NavBar.js**
+
+      This component provides navigation links and icons based on whether a user is logged in or not. It includes features such as sign out and dynamic icons based on a user's authentication status.
+
+      **NotFound.js**
+
+      This component is used to display a "Not Found" message along with an image when a user tries to access a non-existent page. It uses the `Asset` component to display the image and message.
+
+### [**Features for the future**](#features-for-the-future)
+
+  Features planned for future implementation are:
+
+   - modify the like and feed to include events alongside posts
+   - Functionality for eventes to be location specific
+
+### [**Testing**](#testing)
+
+- **Code Validation**
+
+    Manual testing of every feature, component and page was conducted on an ongoing basis throughout development. All test cases performed as intended and passed. The most important of these, regarding users being able to Create, Read, Update and Delete data, included:
+
+    - Overlays
+    - Tooltips
+    - forms 
+    - search bars
+    - links
+    - dropdown menus
+    - redirects
+    - authentication
+    - ownership
+    - toggles
+    - buttons 
+    - uploading images
+
+    A separate file providing details of all the test cases carried out can be found
+      
+
